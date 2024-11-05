@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geisterator</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+</head>
+<body>
+    
+        <div class="dashboard">
+            <div class="form-group">
+                <label for="accountName"><iconify-icon icon="lucide:text-cursor-input" width="24" height="24"  style="color: black"></iconify-icon>Brukernavn</label>
+                <input type="text" id="accountName" value="Fronthgaarden" placeholder="Enter account name">
+            </div>
+            <div class="form-group">
+                <label for="caption"><iconify-icon icon="lucide:text" width="24" height="24"  style="color: black"></iconify-icon>Caption</label>
+                <textarea id="caption" rows="4" placeholder="Enter your caption">Caption står her og overe flere linjer</textarea>
+            </div>
+            <div class="form-group">
+                <label for="image"><iconify-icon icon="lucide:image" width="24" height="24"  style="color: black"></iconify-icon>Innlegg</label>
+                <input type="file" id="image" class="file-upload" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="profilePicture"><iconify-icon icon="lucide:image" width="24" height="24"  style="color: black"></iconify-icon>Profilbilde</label>
+                <input type="file" id="profilePicture" class="file-upload" accept="image/*">
+
+            </div>
+            <button onclick="exportAsImage()">Eksporter</button>
+        </div>
+        <div class="container">
+        <div id="preview" class="preview">
+            <div class="status-bar">
+                <div>9:41</div>
+                <div>
+                    <img src="geist.svg" alt="Studiogeist">
+                </div>
+            </div>
+            <div class="header">
+                <img src="instagram.svg">
+                    <div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="stories">
+                <div class="story">
+                    <div class="story-avatar active">
+                        <img id="profilePicturePreview" src="placeholder.svg?height=64&width=64" alt="Your story" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+                    </div>
+                    <div class="story-username">Your story</div>
+                </div>
+                <div class="story">
+                    <div class="story-avatar"></div>
+                    <div class="story-username">leo.messi</div>
+                </div>
+                <div class="story">
+                    <div class="story-avatar"></div>
+                    <div class="story-username">cuifenn</div>
+                </div>
+                <div class="story">
+                    <div class="story-avatar"></div>
+                    <div class="story-username">_.brainn</div>
+                </div>
+            </div>
+            <div class="post-header">
+                <div class="post-user">
+                    <img id="postProfilePicture" src="/placeholder.svg?height=32&width=32" alt="" class="post-avatar">
+                    <span id="postAccountName" style="font-weight: bold;">Fronthgaarden</span>
+                </div>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="1"></circle>
+                    <circle cx="19" cy="12" r="1"></circle>
+                    <circle cx="5" cy="12" r="1"></circle>
+                </svg>
+            </div>
+            <img id="postImage" src="/placeholder.svg?height=600&width=600" alt="Post" class="post-image">
+            <div class="post-actions">
+                <div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </div>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+            <div class="post-likes">Liked by thekamraan and 905,235 others</div>
+            <div class="post-caption">
+                <span id="captionAccountName" style="font-weight: bold;">Fronthgaarden</span>
+                <span id="captionText">Caption står her og overe flere linjer</span>
+            </div>
+            <div class="bottom-nav">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const accountNameInput = document.getElementById('accountName');
+        const captionInput = document.getElementById('caption');
+        const imageInput = document.getElementById('image');
+        const profilePictureInput = document.getElementById('profilePicture');
+
+        const postAccountName = document.getElementById('postAccountName');
+        const captionAccountName = document.getElementById('captionAccountName');
+        const captionText = document.getElementById('captionText');
+        const postImage = document.getElementById('postImage');
+        const profilePicturePreview = document.getElementById('profilePicturePreview');
+        const postProfilePicture = document.getElementById('postProfilePicture');
+
+        accountNameInput.addEventListener('input', (e) => {
+            postAccountName.textContent = e.target.value;
+            captionAccountName.textContent = e.target.value;
+        });
+
+        captionInput.addEventListener('input', (e) => {
+            captionText.textContent = e.target.value;
+        });
+
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    postImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        profilePictureInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profilePicturePreview.src = e.target.result;
+                    postProfilePicture.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function exportAsImage() {
+            html2canvas(document.getElementById('preview')).then(canvas => {
+                const image = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = 'instagram-preview.png';
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
